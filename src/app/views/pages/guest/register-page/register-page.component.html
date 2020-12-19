@@ -1,0 +1,116 @@
+<h2>Register</h2>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="firstName">First name</label>
+    <input id="firstName" type="text" formControlName="first_name" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && f.first_name.errors}">
+    <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+      <div *ngIf="f.first_name.errors.required">First name is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last name</label>
+    <input id="lastName" type="text" formControlName="last_name" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && f.last_name.errors}">
+    <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+      <div *ngIf="f.last_name.errors.required">Last name is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && f.email.errors}">
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+      <div *ngIf="f.email.errors.email">Email is invalid</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" type="password" formControlName="password" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && f.password.errors}">
+    <div *ngIf="submitted && f.password.invalid" class="invalid-feedback">
+      <div *ngIf="f.password.errors.required">Password is required</div>
+      <div *ngIf="f.password.errors.minlength">Password must be at least 8 characters</div>
+      <div *ngIf="f.password.errors.hasNumber">Password must contain number</div>
+      <div *ngIf="f.password.errors.hasCapitalCase">Password must have a capital</div>
+      <div *ngIf="f.password.errors.hasSmallCase">Password must have lower</div>
+      <div *ngIf="f.password.errors.hasSpecialCharacters">Password must have special character</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password-confirm">Password confirmation</label>
+    <input id="password-confirm" type="password" formControlName="password_confirmation" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && f.password_confirmation.errors}">
+    <div *ngIf="submitted && f.password_confirmation.errors" class="invalid-feedback">
+      <div *ngIf="f.password_confirmation.errors.required">Password confirmation is required</div>
+      <div *ngIf="f.password_confirmation.errors.mustMatch">Passwords don't match</div>
+    </div>
+  </div>
+
+  <!--<div class="form-group">
+    <label for="birthdate">Birth date</label>
+    <input id="birthdate" type="date" formControlName="birth_date" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && f.birth_date.errors}" [max]="maxDate">
+    <div *ngIf="submitted && f.birth_date.errors" class="invalid-feedback">
+      <div *ngIf="f.birth_date.errors.required">Birth date is required</div>
+    </div>
+  </div>-->
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [max]="maxDate" [min]="minDate" [matDatepicker]="picker" formControlName="birth_date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+
+    <div *ngIf="submitted && f.birth_date.errors" class="invalid-feedback">
+      <div *ngIf="f.birth_date.errors.required">Birth date is required</div>
+      <div *ngIf="f.birth_date.errors.maxDate">Birth date must be at least 18</div>
+      <div *ngIf="f.birth_date.errors.minDate">Birth date must be at most 100</div>
+    </div>
+  </mat-form-field>
+
+  <!--<div class="form-group">
+    <label for="phone_country">Country code</label>
+    <input id="phone_country" type="text" formControlName="phone_country" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && f.phone_country.errors}">
+    <div *ngIf="submitted && f.phone_country.errors" class="invalid-feedback">
+      <div *ngIf="f.phone_country.errors.required">Country code is required</div>
+    </div>
+  </div>-->
+
+  <div class="form-group">
+    <label for="phone_number">Phone number</label>
+    <input id="phone_number" type="text" formControlName="phone_number" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors}" ng2TelInput
+           [ng2TelInputOptions]="{initialCountry: 'us'}"
+           (countryChange)="onCountryChange($event)"
+    >
+    <div *ngIf="submitted && f.phone_number.errors" class="invalid-feedback">
+      <div *ngIf="f.phone_number.errors.required">Phone number is required</div>
+      <div *ngIf="f.phone_number.errors.validCountryPhone">Phone number is invalid</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="accept_terms">Terms and conditions</label>
+    <input id="accept_terms" type="checkbox" formControlName="accept_terms" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && f.accept_terms.errors}">
+    <div *ngIf="submitted && f.accept_terms.errors" class="invalid-feedback">
+      <div *ngIf="f.accept_terms.errors.required">You have to accept term and conditions</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Register
+    </button>
+    <a routerLink="/login" class="btn btn-link">Login</a>
+  </div>
+</form>

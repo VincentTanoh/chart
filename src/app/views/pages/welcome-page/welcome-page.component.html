@@ -1,0 +1,116 @@
+<!--<ais-instantsearch [config]="config">-->
+<!--  <div class="left-panel">-->
+<!--    <ais-clear-refinements ></ais-clear-refinements >-->
+<!--    <h2>City</h2>-->
+<!--    <ais-refinement-list attribute="brand" searchable ></ais-refinement-list>-->
+<!--    <ais-configure [searchParameters]="{ hitsPerPage: 10 }"></ais-configure>-->
+<!--  </div>-->
+<!--  <div class="right-panel">-->
+<!--    <ais-search-box ></ais-search-box >-->
+<!--    <ais-hits>-->
+<!--      <ng-template let-hits="hits">-->
+<!--        <ol class="ais-Hits-list">-->
+<!--          <li *ngFor="let hit of hits" class="ais-Hits-item">-->
+<!--            {{hit.city}}-->
+<!--          </li>-->
+<!--        </ol>-->
+<!--      </ng-template>-->
+<!--    </ais-hits>-->
+<!--    <ais-pagination > </ais-pagination >-->
+<!--  </div>-->
+<!--</ais-instantsearch>-->
+
+
+<!--<br/>-->
+
+<!--<ais-instantsearch [config]="config">-->
+<!--  <div class="left-panel">-->
+<!--    <ais-clear-refinements ></ais-clear-refinements >-->
+<!--    <h2>Country</h2>-->
+<!--    <ais-refinement-list attribute="brand" searchable ></ais-refinement-list>-->
+<!--    <ais-configure [searchParameters]="{ hitsPerPage: 10 }"></ais-configure>-->
+<!--  </div>-->
+<!--  <div class="right-panel">-->
+<!--    <ais-search-box ></ais-search-box >-->
+<!--    <ais-hits>-->
+<!--      <ng-template let-hits="hits">-->
+<!--        <ol class="ais-Hits-list">-->
+<!--          <li *ngFor="let hit of hits" class="ais-Hits-item">-->
+<!--            {{hit.country}}-->
+<!--          </li>-->
+<!--        </ol>-->
+<!--      </ng-template>-->
+<!--    </ais-hits>-->
+<!--    <ais-pagination > </ais-pagination >-->
+<!--  </div>-->
+<!--</ais-instantsearch>-->
+
+
+<!--<br/>-->
+
+<!--<ais-instantsearch [config]="config">-->
+<!--  <div class="left-panel">-->
+<!--    <ais-clear-refinements ></ais-clear-refinements >-->
+<!--    <h2>Aéroport</h2>-->
+<!--    <ais-refinement-list attribute="brand" searchable ></ais-refinement-list>-->
+<!--    <ais-configure [searchParameters]="{ hitsPerPage: 10 }"></ais-configure>-->
+<!--  </div>-->
+<!--  <div class="right-panel">-->
+<!--    <ais-search-box ></ais-search-box >-->
+<!--    <ais-hits>-->
+<!--      <ng-template let-hits="hits">-->
+<!--        <ol class="ais-Hits-list">-->
+<!--          <li *ngFor="let hit of hits" class="ais-Hits-item">-->
+<!--            {{hit.name}}-->
+<!--          </li>-->
+<!--        </ol>-->
+<!--      </ng-template>-->
+<!--    </ais-hits>-->
+<!--    <ais-pagination > </ais-pagination >-->
+<!--  </div>-->
+<!--</ais-instantsearch>-->
+
+
+<!--<div style="text-align:center; margin-top: 100px; ">-->
+<!--&lt;!&ndash;  <img style="max-width: 400px;" *ngIf="book.photo" [src]="book.photo" alt="photo">&ndash;&gt;-->
+<!--    <button  (click)="onClick()"> Upload-->
+<!--    </button>-->
+<!--  <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" /></div>-->
+
+
+
+
+
+
+
+<div class="row">
+  <div>
+
+
+    <select  class="form-control" (change)="onSelect($event)">
+      <option disabled>Select Website</option>
+      <option>Choose Website</option>
+      <option *ngFor="let listetravel of travels" [value]="listetravel.departurePosition.lon + '#' + listetravel.departurePosition.lat">{{listetravel.travelName}}</option>
+
+    </select>
+  </div>
+  <div id="carte"></div>
+  <div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+  </div>
+  <p>
+    longitude : <code class="value">{{this.position.longLat[0] || 'undefined'}} [°]</code>&nbsp;&nbsp;
+    latitude : <code class="value">{{this.position.longLat[1]  || 'undefined'}} [°]</code>&nbsp;&nbsp;
+    altitude : <code class="value">{{this.position.altitude || 'undefined'}} [m]</code>
+  </p>
+  <p>
+    heading : <code class="value">{{this.position.heading || 'undefined'}} [rad]</code>&nbsp;&nbsp;
+    speed : <code class="value">{{this.position.speed || 'undefined'}} [m/s]</code>
+  </p>
+  <p>
+    position accuracy : <code class="value">{{this.position.positionAccuracy || 'undefined'}} [m]</code>&nbsp;&nbsp;
+    altitude accuracy : <code class="value">{{this.position.altitudeAccuracy || 'undefined'}} [m]</code>
+  </p>
+</div>
+
