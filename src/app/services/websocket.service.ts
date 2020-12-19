@@ -62,7 +62,7 @@ export class WebSocketService {
    * Connect and activate the client to the broker.
    */
   private connect = () => {
-    // this.stompService.stompClient.configure(this.stompConfig);
+    this.stompService.stompClient.configure(this.stompConfig);
     this.stompService.stompClient.onConnect = this.onSocketConnect;
     this.stompService.stompClient.onStompError = this.onSocketError;
     this.stompService.stompClient.activate();
